@@ -1,0 +1,24 @@
+{
+  "type": "marker",
+  "marker": {
+    "id": "grasp_target",
+    "shape": "arrow",
+    "from": [
+      0.3,
+      0.0,
+      0.4
+    ],
+    "to": [
+      0.3,
+      0.0,
+      0.1
+    ],
+    "color": [
+      1.0,
+      0.35,
+      0.0,
+      1.0
+    ],
+    "scale": 0.02
+  }
+}

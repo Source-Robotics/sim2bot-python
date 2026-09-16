@@ -1,0 +1,5 @@
+{
+  "type": "room_opening",
+  "opening": "room_door_ab12cd34",
+  "fraction": 0.75
+}

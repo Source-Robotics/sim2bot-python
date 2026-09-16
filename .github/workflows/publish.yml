@@ -1,0 +1,65 @@
+name: Publish to PyPI
+
+# Runs when a release is published in GitHub. Publishing uses PyPI trusted
+# publishing (OpenID Connect), so no API token is stored in this repository.
+#
+# Set up once on PyPI: Project -> Publishing -> add a GitHub publisher with
+# owner Source-Robotics, repository sim2bot-python, workflow publish.yml and
+# environment pypi.
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build distributions
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build
+        run: |
+          python -m pip install --upgrade pip build twine
+          python -m build
+
+      - name: Check metadata
+        run: twine check dist/*
+
+      - name: Confirm the tag matches the package version
+        run: |
+          tag="${GITHUB_REF_NAME#v}"
+          version="$(python -c 'import tomllib,pathlib; print(tomllib.loads(pathlib.Path("pyproject.toml").read_text())["project"]["version"])')"
+          if [ "$tag" != "$version" ]; then
+            echo "tag $tag does not match pyproject version $version" >&2
+            exit 1
+          fi
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: distributions
+          path: dist/
+
+  publish:
+    name: Publish
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/p/sim2bot
+    permissions:
+      id-token: write # the OIDC token that PyPI trusts instead of a password
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: distributions
+          path: dist/
+
+      - uses: pypa/gh-action-pypi-publish@release/v1

@@ -1,0 +1,11 @@
+include README.md
+include LICENSE
+include CHANGELOG.md
+include pyproject.toml
+recursive-include sim2bot *.py
+recursive-include fixtures *.json
+prune sim2bot.egg-info
+prune build
+prune dist
+global-exclude __pycache__
+global-exclude *.py[cod]

@@ -1,0 +1,75 @@
+name: Bug report
+description: Something does not work as documented
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Most reports turn out to be about the Sim2Bot application or the bridge
+        rather than the Python code, so the version and the bridge log below are
+        what make a report actionable. Report it here either way — it gets
+        routed.
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What you expected, and what happened instead.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Smallest script that shows it
+      description: Python that someone else can run. Include the robot you loaded.
+      render: python
+    validations:
+      required: true
+
+  - type: input
+    id: package-version
+    attributes:
+      label: sim2bot package version
+      description: "`pip show sim2bot`, or the SDK line printed by `sim2bot doctor`"
+      placeholder: "0.1.0"
+    validations:
+      required: true
+
+  - type: input
+    id: app-version
+    attributes:
+      label: Sim2Bot app version
+      description: Shown in the app under Help. Say "not used" if the app was not involved.
+      placeholder: "1.4.0 (9f2c1ab)"
+    validations:
+      required: true
+
+  - type: textarea
+    id: bridge-log
+    attributes:
+      label: Bridge output
+      description: >
+        The terminal output of the bridge while the problem happened, and the
+        output of `sim2bot doctor`.
+      render: shell
+
+  - type: input
+    id: environment
+    attributes:
+      label: Python and operating system
+      placeholder: "Python 3.12.4, Ubuntu 24.04"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: transport
+    attributes:
+      label: Transport
+      options:
+        - WebSocket (default)
+        - UDP
+        - Raw TCP
+        - Not relevant
+    validations:
+      required: true

@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Documentation
+    url: https://docs.sim2bot.com/
+    about: Guides, the Python API reference and the protocol description.
+  - name: Question about using Sim2Bot
+    url: https://github.com/Source-Robotics/sim2bot-python/discussions
+    about: Ask here rather than opening an issue.
+  - name: Security problem
+    url: https://github.com/Source-Robotics/sim2bot-python/blob/main/SECURITY.md
+    about: Email info@source-robotics.com instead of opening a public issue.

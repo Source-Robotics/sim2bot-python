@@ -1,0 +1,9 @@
+{
+  "type": "camera_subscribe",
+  "camera": "model:0",
+  "fps": 30,
+  "width": 256,
+  "height": 256,
+  "quality": 80,
+  "codec": 0
+}

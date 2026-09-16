@@ -1,0 +1,8 @@
+{
+  "type": "base_velocity",
+  "vx": 0.4,
+  "vy": 0.0,
+  "vz": 0.0,
+  "omega": 0.35,
+  "robot": 0
+}

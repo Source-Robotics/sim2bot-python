@@ -1,0 +1,59 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sim2bot"
+version = "0.1.0"
+description = "Python client for the Sim2Bot browser robot simulator"
+readme = "README.md"
+requires-python = ">=3.9"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Source Robotics", email = "info@source-robotics.com" }]
+keywords = ["robotics", "simulation", "mujoco", "bridge", "sdk"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Science/Research",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Scientific/Engineering",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+  "fastapi>=0.110",
+  "uvicorn[standard]>=0.29",
+  "websockets>=12.0",
+]
+
+[project.urls]
+Homepage = "https://sim2bot.com/"
+Documentation = "https://docs.sim2bot.com/"
+Source = "https://github.com/Source-Robotics/sim2bot-python"
+Issues = "https://github.com/Source-Robotics/sim2bot-python/issues"
+Changelog = "https://github.com/Source-Robotics/sim2bot-python/blob/main/CHANGELOG.md"
+
+[project.scripts]
+sim2bot = "sim2bot.cli:main"
+
+[project.optional-dependencies]
+# Camera-feed decoding to numpy images (CameraFrame.image()).
+cv2 = ["opencv-python>=4.5", "numpy>=1.21"]
+# H.264 camera decode.
+av = ["av>=11", "numpy>=1.21"]
+# Everything the test suite and a release build need.
+dev = ["build>=1.2", "pytest>=8", "twine>=5"]
+
+[tool.setuptools]
+include-package-data = true
+packages = ["sim2bot"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
